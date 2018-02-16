@@ -6,8 +6,14 @@
   </head>
   <body>
     <p><% @links.each do |link| %></p>
+    <li id="link-<%= link.id %>">
       <h2><%= link.title %></h2>
       <p><%= link.url %></p>
+      <form action="/delete_link" method="post">
+        <input type="hidden" name="id" value="<%= link.id %>" >
+        <input type="submit" value="delete">
+      </form>
+    </li>
     <% end %>
   </body>
   <form action="/add_link" method="post">

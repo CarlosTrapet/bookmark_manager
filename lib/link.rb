@@ -14,6 +14,10 @@ class Link
     DatabaseConnection.query("INSERT INTO links (url, title) VALUES ('#{link}', '#{title}')") if valid?(link)
   end
 
+  def self.delete_link(id)
+    DatabaseConnection.query("DELETE FROM links WHERE id = #{id}")
+  end
+
   def self.valid?(link)
     uri = URI.parse(link)
     uri.kind_of?(URI::HTTP) || uri.kind_of?(URI::HTTPS)
