@@ -33,5 +33,28 @@ class BookmarkManager < Sinatra::Base
     redirect '/'
   end
 
+  get '/edit_link/:id' do
+    @link = Link.find(params['id'])
+    erb(:edit_link)
+  end
+
+  post '/update_link/:id' do
+    Link.update(params)
+    redirect '/'
+  end
+
   run! if app_file == $0
 end
+
+
+
+
+
+
+
+
+
+
+
+
+

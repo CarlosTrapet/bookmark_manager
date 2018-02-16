@@ -23,6 +23,14 @@ class Link
     uri.kind_of?(URI::HTTP) || uri.kind_of?(URI::HTTPS)
   end
 
+  def self.find(id)
+    DatabaseConnection.query("SELECT * FROM links WHERE id = #{id}").first
+  end
+
+  def self.update(params)
+    DatabaseConnection.query("UPDATE links SET (title, url) = ('#{params['new_title']}', '#{params['new_link']}') WHERE id = #{params['id']}")
+  end
+
   attr_reader :id, :url, :title
 
   def initialize(id, url, title)

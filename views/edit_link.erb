@@ -1,0 +1,5 @@
+<form action="/update_link/<%= @link['id'] %>" method="post">
+  <input type="text" name="new_title" value="<%= @link['title'] %>">
+  <input type="text" name="new_link" value="<%= @link['url'] %>">
+  <input type="submit" value="Update">
+</form>
