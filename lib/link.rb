@@ -25,10 +25,11 @@ class Link
     uri.kind_of?(URI::HTTP) || uri.kind_of?(URI::HTTPS)
   end
 
-  attr_reader :id, :url
+  attr_reader :id, :url, :title
 
-  def initialize(id, url)
+  def initialize(id, url, title)
     @id = id
     @url = url
+    @title = title
   end
 end
