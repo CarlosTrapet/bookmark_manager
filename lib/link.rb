@@ -4,7 +4,7 @@ require_relative 'database_connection'
 class Link
 
   def self.all
-    query = DatabaseConnection.query('SELECT * FROM links') # assign to variable
+    query = DatabaseConnection.query('SELECT * FROM links ORDER BY id') # assign to variable
     query.map do |row|
       Link.new(row["id"],row["url"],row["title"])
     end
