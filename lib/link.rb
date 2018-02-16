@@ -3,21 +3,15 @@ require_relative 'database_connection'
 
 class Link
 
-  @@list = []
-
-  def self.list
-    @@list
-  end
-
   def self.all
-    query = DatabaseConnection.query('SELECT url FROM links') # assign to variable
+    query = DatabaseConnection.query('SELECT * FROM links') # assign to variable
     query.map do |row|
-      Link.new(row["id"],row["url"])
+      Link.new(row["id"],row["url"],row["title"])
     end
   end
 
-  def self.add_link(link)
-    DatabaseConnection.query("INSERT INTO links (url) VALUES ('#{link}')") if valid?(link)
+  def self.add_link(link, title)
+    DatabaseConnection.query("INSERT INTO links (url, title) VALUES ('#{link}', '#{title}')") if valid?(link)
   end
 
   def self.valid?(link)

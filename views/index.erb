@@ -5,10 +5,14 @@
     <title>Links</title>
   </head>
   <body>
-    <h1><%= @links %></h1>
+    <p><% @links.each do |link| %></p>
+      <h2><%= link.title %></h2>
+      <p><%= link.url %></p>
+    <% end %>
   </body>
   <form action="/add_link" method="post">
-    <input type="text" name="new_link" value="">
+    <input type="text" name="new_title" placeholder="title">
+    <input type="text" name="new_link" placeholder="url">
     <input type="submit" value="Add Bookmark">
   </form>
 </html>

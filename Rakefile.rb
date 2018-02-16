@@ -11,13 +11,14 @@ task :setup do
 end
 
 task :test do
-  DatabaseConnection.setup('bookmark_manager_test')
-  DatabaseConnection.query("TRUNCATE links;
+  # DatabaseConnection.setup('bookmark_manager_test')
+  DatabaseConnection.query("TRUNCATE links RESTART IDENTITY;
   INSERT INTO links (url, title) VALUES ('http://www.facebook.com', 'Facebook');
   INSERT INTO links (url, title) VALUES ('http://www.google.com', 'Google');")
 end
 
 task :update do
+  p "Updating database..."
   conn = PG.connect
   ['bookmark_manager','bookmark_manager_test'].each do |database|
       DatabaseConnection.setup("#{database}")

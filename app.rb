@@ -12,14 +12,15 @@ class BookmarkManager < Sinatra::Base
   DatabaseConnection.setup('bookmark_manager')
 
   get '/' do
-    @links = Link.all.map(&:url)
+    @links = Link.all
     erb(:index)
   end
 
   post '/add_link' do
     @new_link = params[:new_link]
+    @new_title = params[:new_title]
     if Link.valid?(@new_link)
-      Link.add_link(@new_link)
+      Link.add_link(@new_link, @new_title)
       redirect '/'
     else
       flash.now[:error] = 'Error - that is not a link.'
